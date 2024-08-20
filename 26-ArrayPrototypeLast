@@ -1,0 +1,24 @@
+// 2619. Array Prototype Last
+// console.log(Array.prototype)
+
+// Array.prototype.log = function(){
+//   console.log(this)
+// }
+
+// console.log(Object.getOwnPropertyNames(Array.prototype))
+
+// let arr = [1,2]
+// arr.log()
+// console.log(Object.getPrototypeOf(arr))
+
+// Array.prototype.log = function(){
+//   console.log(this)
+// }
+
+Array.prototype.last = function () {
+  if (this.length) return this[this.length - 1];
+  return -1;
+};
+
+const arr = [1, 2, 3];
+arr.last();
