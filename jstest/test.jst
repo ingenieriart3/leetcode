@@ -1,0 +1,12 @@
+// test.js
+console.log("1. Start");
+
+setTimeout(() => {
+  console.log("2. Timeout Callback");
+}, 0);
+
+Promise.resolve()
+  .then(() => console.log("3. Promise Microtask 1"))
+  .then(() => console.log("4. Promise Microtask 2"));
+
+console.log("5. End");
