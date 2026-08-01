@@ -30,24 +30,24 @@ function binarySearch(arr, target) {
 //     Edge Case: En JS, {} y Map son O(1) promedio, pero si las claves son números grandes, usa new Array(n).fill(false) para un acceso directo por índice (más rápido).
 
 // HashMap para contar frecuencias (O(n))
-function countFreq(arr){
-  const map = new Map()
-  for (let item of arr){
-    map.set(item, (map.get(item) || 0 ) +1)
+function countFreq(arr) {
+  const map = new Map();
+  for (let item of arr) {
+    map.set(item, (map.get(item) || 0) + 1);
   }
-  return map
+  return map;
 }
 //const arr = [0,1,2,3,4,2,2,4,5,6,7,8]
 // countFreq(arr)
 
 // Array como HashMap (cuando el rango es conocido, ej: números 0-100)
-function hasDuplicates(nums){
-  const seen = new Array(101).fill(false)
+function hasDuplicates(nums) {
+  const seen = new Array(101).fill(false);
   for (let num of nums) {
-    if(seen[num]) return true
-    seen[num] = true
+    if (seen[num]) return true;
+    seen[num] = true;
   }
-  return false
+  return false;
 }
 
 // 3. Stack / Queue (El orden importa)
@@ -87,7 +87,8 @@ function bfs(graph, start) {
 
 // Suma de dos números en array ordenado (punteros extremos)
 function twoSumSorted(arr, target) {
-  let left = 0, right = arr.length - 1;
+  let left = 0,
+    right = arr.length - 1;
   while (left < right) {
     const sum = arr[left] + arr[right];
     if (sum === target) return [left, right];
@@ -129,7 +130,8 @@ function maxSumFixed(arr, k) {
 // Ventana variable: Subcadena más larga SIN repetir caracteres
 function longestUniqueSubstr(s) {
   const set = new Set();
-  let left = 0, maxLen = 0;
+  let left = 0,
+    maxLen = 0;
   for (let right = 0; right < s.length; right++) {
     while (set.has(s[right])) {
       set.delete(s[left]);
@@ -145,12 +147,12 @@ function longestUniqueSubstr(s) {
 //     Patrón: prefix[i] = prefix[i-1] + arr[i]. Para suma de (i,j) → prefix[j] - prefix[i-1].
 //     Edge Case: El truco TOP es usar un HashMap para guardar prefix sums y encontrar subarrays que sumen K en O(n).
 
-
 // Subarray que suma K (con HashMap)
 function subarraySum(nums, k) {
   const map = new Map();
   map.set(0, 1); // Para cuando el prefix completo suma K
-  let sum = 0, count = 0;
+  let sum = 0,
+    count = 0;
   for (let num of nums) {
     sum += num;
     if (map.has(sum - k)) {
@@ -165,10 +167,10 @@ function subarraySum(nums, k) {
 //     Patrón: Buscar en espacio ordenado.
 //     Edge Case CRÍTICO: Define si usas <= o <. Mi regla fija: Usa while (left <= right) y siempre actualiza left = mid + 1 o right = mid - 1. Así evitas loops infinitos.
 
-
 // Búsqueda estándar (con <=)
 function search(nums, target) {
-  let left = 0, right = nums.length - 1;
+  let left = 0,
+    right = nums.length - 1;
   while (left <= right) {
     const mid = Math.floor((left + right) / 2);
     if (nums[mid] === target) return mid;
@@ -183,41 +185,13 @@ function search(nums, target) {
 
 // Buscar el primer elemento que cumple condición (lower_bound)
 function firstBadVersion(n, isBad) {
-  let left = 1, right = n;
-  while (left < right) { // Aquí usamos < porque nos quedamos con el left
+  let left = 1,
+    right = n;
+  while (left < right) {
+    // Aquí usamos < porque nos quedamos con el left
     const mid = Math.floor((left + right) / 2);
     if (isBad(mid)) right = mid;
     else left = mid + 1;
   }
   return left;
 }
-
-⚔️ PLAN DE ACCIÓN (Actualizado para mañana)
-
-Viernes (MAÑANA):
-
-    1 hora: Lee el código de arriba. No lo memores, entendé el "por qué" de cada línea.
-
-    3-4 horas de ejercicios en LeetCode / Codewars.
-
-        Regla de oro: 20-30 min por problema. ¿Bloqueado? Lees la solución (solo la idea), la cierras, y pasas al siguiente. No te estanques.
-
-Sábado:
-
-    Mañana: 2 ejercicios fáciles (calentamiento, solo para que los dedos escriban).
-
-    Mediodía: SIMULACRO CRONOGRÁFICO de 145 minutos. Busca un problema difícil de Toptal o haz un mock en Pramp. Pon cronómetro, ruido y NO PAUSES.
-
-    Evaluación:
-
-        ¿Terminaste y te sobró tiempo? → DALO EL SÁBADO A ÚLTIMA HORA (tu cerebro está en modo guerra).
-
-        ¿Te faltó tiempo o te trabaste? → DESCANSAS y lo das el Domingo a las 15:00.
-
-📆 EL DÍA D: DOMINGO 15:00 - 16:00 (Mi recomendación final)
-
-Sigue siendo la mejor opción. Te da el sábado para presionarte y el domingo para llegar fresco. A las 3 PM tu cerebro está en su punto máximo de alerta sin estar cansado por la mañana temprano.
-
-Ultra consejo para el día del examen: Antes de empezar, escribe mentalmente en un papel (o en el chat del editor) los snippets de Binary Search y Sliding Window que te cuesten. Tenerlos frescos en la memoria visual te ahorrará 5 minutos de pensar en sintaxis.
-
-¡Mañana a darle átomos! El código de arriba es tu arsenal. Úsalo sabiamente. 💻🔥
